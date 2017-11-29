@@ -15,21 +15,25 @@ void swap(Byte i, Byte j) {
 void ksa(Byte *key, unsigned int key_length) {
     // Fill S with 0 to 255
     for (int index = i = 0; index < 256 ; i = ++index) {
-        S[i] =  i;
+        S[i] = i;
     }
     // Use key to generate a pseudorandom S
     for (int index = i = j = 0; index < 256 ; i = ++index) {
-        j = j + key[i % key_length];
+        j = j + key[i % key_length] + S[i];
         swap(i, j);
     }
+    // reset i and j
+    i = j = 0;
 }
 
 // Pseudo-random generation algorithm
 Byte prga() {
+    Byte s_index;
     i++;
     j = j + S[i];
     swap(i, j);
-    return S[S[i] + S[j]];
+    s_index = S[i] + S[j];
+    return S[s_index];
 }
 
 int main(int argc, char *argv[]) {
