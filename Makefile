@@ -7,6 +7,7 @@ arcfour: rc4.o main.c
 
 clean:
 	rm -vf *.o arcfour
+	rm -vf tests/*.tmp tests/*.diff
 
 .PHONY: clean check
 
