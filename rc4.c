@@ -12,16 +12,19 @@ void swap(Byte i, Byte j) {
 }
 
 // Key scheduling algorithm
-void ksa(Byte *key, unsigned int key_length) {
+void ksa() {
     // Fill S with 0 to 255
-    for (int index = i = 0; index < 256 ; i = ++index) {
+    i = 0;
+    do {
         S[i] = i;
-    }
-    // Use key to generate a pseudorandom S
-    for (int index = i = j = 0; index < 256 ; i = ++index) {
-        j = j + key[i % key_length] + S[i];
+        i++;
+    } while (i);
+    // Use Key to generate a pseudorandom S
+    do {
+        j = j + Key[i % key_length] + S[i];
         swap(i, j);
-    }
+        i++;
+    } while (i);
     // reset i and j
     i = j = 0;
 }
@@ -36,30 +39,24 @@ Byte prga() {
     return S[s_index];
 }
 
-int main(int argc, char *argv[]) {
-    Byte buffer[256], index;
-    ssize_t b_read, b_written;
-    Byte *key = (unsigned char *) argv[1];
-    // the only argument needed is the key
-    if (argc != 2) {
-        printf("Usage: rc4 <key>\n");
-        exit(1);
-    }
-    ksa(key, strlen(argv[1]));
-    while (1) {
-        // read from stdin, and write in buffer
-        b_read = read(0, buffer, 255);
-        // if we read something, we should cipher it
-        if (b_read > 0) {
-            // Cipher it!
-            for (index = 0; index < b_read; index++) {
-                buffer[index] = buffer[index] ^ prga();
-            }
-            // write it to stdout
-            b_written = write(1, buffer, b_read);
-        } else {
-            break;
+// Store key from file descriptor
+Byte get_key(const int input) {
+    key_length = read(input, Key, 256); // key should have a lenght of 256 or less
+    return (key_length != 0);
+}
+
+// RC4 Cipher
+void rc4(const int input, const int output) {
+    Byte buffer[BUFFER_SIZE], keep_ciphering;
+    unsigned int index;
+    ssize_t read_bytes, written_bytes;
+    ksa();
+    do {
+        read_bytes = read(input, buffer, BUFFER_SIZE);
+        for (index = 0; index < read_bytes; index++) {
+            buffer[index] = buffer[index] ^ prga();
         }
-    }
-    exit(0);
+        written_bytes = write(output, buffer, read_bytes);
+        keep_ciphering = (read_bytes > 0) && (read_bytes == written_bytes);
+    } while(keep_ciphering);
 }
