@@ -36,5 +36,9 @@ int main(int argc, char *argv[]) {
     // Use the cipher
     // Input is stdin, and output is stdout
     rc4(0, 1);
+    // Close files
+    close(0);
+    close(1);
+    close(key_file);
     exit(0);
 }

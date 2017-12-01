@@ -2,7 +2,7 @@
 
 typedef unsigned char Byte;
 
-Byte key_length;
+unsigned short int key_length;
 Byte Key[256];
 Byte S[256];
 Byte i;

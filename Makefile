@@ -8,4 +8,7 @@ arcfour: rc4.o main.c
 clean:
 	rm -vf *.o arcfour
 
-.PHONY: clean
+.PHONY: clean check
+
+check: arcfour
+	bash tests/run_tests.sh
