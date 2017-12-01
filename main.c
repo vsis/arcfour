@@ -12,6 +12,7 @@ void print_usage() {
 void print_cant_open() {
     printf("Can't open the key file\n");
 }
+
 int main(int argc, char *argv[]) {
     int key_file;
     Byte got_key;
