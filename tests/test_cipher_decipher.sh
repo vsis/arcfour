@@ -3,8 +3,8 @@
 # If we cipher and decipher a file with the same key, we should get the same file.
 
 # Get two tests files
-head -c 256 < /dev/random > tests/256.tmp
-head -c 2048 < /dev/random > tests/2048.tmp
+head -c 256 < /dev/urandom > tests/256.tmp
+head -c 2048 < /dev/urandom > tests/2048.tmp
 
 # Cipher and decipher them. Use the same key
 ./arcfour tests/Key < tests/256.tmp | ./arcfour tests/Key > tests/256.tmp.diff

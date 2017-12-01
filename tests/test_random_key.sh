@@ -1,14 +1,14 @@
 #!/bin/bash
 
-# We should be capable to use a random 256 Bytes key
+# We should be capable to use a urandom 256 Bytes key
 
-# Get a random key
-head -c 256 < /dev/random > tests/rkey
+# Get a urandom key
+head -c 256 < /dev/urandom > tests/rkey
 
-# Get a random file
-head -c 2048 < /dev/random > tests/2048.tmp
+# Get a urandom file
+head -c 2048 < /dev/urandom > tests/2048.tmp
 
-# Cipher and decipher it, with our random key
+# Cipher and decipher it, with our urandom key
 ./arcfour tests/rkey < tests/2048.tmp | ./arcfour tests/rkey > tests/2048.tmp.diff
 
 # Check difference

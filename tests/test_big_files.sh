@@ -3,12 +3,12 @@
 # This cipher is suposed to handle big files. Not simply test files.
 
 # Generate files of 1 MB, 10 MB and 100 MB
-head -c 1048576 < /dev/random > tests/1MB.tmp
-head -c 10485760 < /dev/random > tests/10MB.tmp
-head -c 104857600 < /dev/random > tests/100MB.tmp
+head -c 1048576 < /dev/urandom > tests/1MB.tmp
+head -c 10485760 < /dev/urandom > tests/10MB.tmp
+head -c 104857600 < /dev/urandom > tests/100MB.tmp
 
 # Generate a 256 key
-head -c 256 < /dev/random > tests/key.tmp
+head -c 256 < /dev/urandom > tests/key.tmp
 
 # Cipher and decipher
 ./arcfour tests/key.tmp < tests/1MB.tmp | ./arcfour tests/key.tmp > tests/1MB.tmp.diff
