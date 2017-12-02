@@ -12,4 +12,5 @@ clean:
 .PHONY: clean check
 
 check: arcfour
-	bash tests/run_tests.sh
+	./tests/run_tests.sh | column -s "|" -t
+	@test ! -f tests/error.tmp # If a tests fails, an error.tmp file will be touched
