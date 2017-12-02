@@ -57,6 +57,6 @@ void rc4(const int input, const int output) {
             buffer[index] = buffer[index] ^ prga();
         }
         written_bytes = write(output, buffer, read_bytes);
-        keep_ciphering = (read_bytes > 0) && (read_bytes == written_bytes);
+        keep_ciphering = (read_bytes == BUFFER_SIZE) && (read_bytes == written_bytes);
     } while(keep_ciphering);
 }
