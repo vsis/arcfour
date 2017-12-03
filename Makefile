@@ -5,6 +5,9 @@ all: arcfour
 arcfour: rc4.o main.c
 	$(CC) $(CFLAGS) main.c -o arcfour rc4.o
 
+saber1: rc4.o saber1.h saber1.c
+	$(CC) $(CFLAGS) saber1.c -o saber1 rc4.o
+
 clean:
 	rm -vf *.o arcfour
 	rm -vf tests/*.tmp tests/*.diff
