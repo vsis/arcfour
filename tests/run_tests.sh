@@ -7,7 +7,7 @@ Color_Off='\e[0m'
 rm -f tests/error.tmp
 for file in tests/test_*.sh
 do
-    printf "Running: ${file}:"
+    printf "    ${file}:"
     bash $file 2>&1 > /dev/null
     if [ "$?" = "0" ]
     then
