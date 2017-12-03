@@ -1,6 +1,7 @@
 *.swp
 *.o
 arcfour
+saber1
 *.tmp
 *.diff
 tests/rkey
