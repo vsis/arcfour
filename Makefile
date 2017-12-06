@@ -1,6 +1,6 @@
 CC=gcc
 
-all: arcfour
+all: arcfour saber1
 
 arcfour: rc4.o main.c
 	$(CC) $(CFLAGS) main.c -o arcfour rc4.o

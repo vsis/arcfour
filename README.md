@@ -1,6 +1,6 @@
 # Arcfour and CipherSaber
 
-This is my implementation of RC4 algorithm and [CipherSaber](http://ciphersaber.gurus.org/).
+This is my implementation of [RC4](https://en.wikipedia.org/wiki/RC4) algorithm and [CipherSaber](http://ciphersaber.gurus.org/).
 
 You may run some functional tests with:
 
@@ -8,7 +8,7 @@ You may run some functional tests with:
 make check
 ```
 
-Also you may build the project with:
+Also, you may build the project with:
 
 ```
 make
@@ -33,7 +33,7 @@ To decipher, you need the same key:
 
 ## CipherSaber
 
-To cipher with CipherSaber, you also need a secret key, but the first parameter is `cipher` or `decipher`.
+To cipher with CipherSaber, you need a secret key again. But this time, first parameter is `cipher` or `decipher`.
 
 ```
 echo -n "Attack at dawn" | ./saber1 cipher my.key > message.cs
@@ -47,7 +47,7 @@ Then, if you want to decipher the message:
 
 ## Creating a key
 
-There is a lot of way to create a secret key. You may use a passphrase or a random stream of bytes.
+There is a lot of ways to create a secret key. You may use a passphrase or a random stream of bytes.
 
 This is a way to create a secret key with 128 bytes long:
 
